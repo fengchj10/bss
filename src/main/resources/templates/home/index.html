@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>对账系统</title>
+    <link rel="stylesheet" th:href="@{/lib/element-ui/lib/theme-chalk/index.css}"/>
+    <link rel="stylesheet" th:href="@{/lib/font/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <link rel="icon" href="/static/image/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+
+<div id="index">
+    <!-- header -->
+    <el-menu mode="horizontal" :default-active="activeIndex">
+        <el-menu-item index="0" id="logo">广东联通BSS营帐对账系统</el-menu-item>
+        <el-menu-item index="1"><a href="/index">首页</a></el-menu-item>
+        <el-menu-item index="2"><a href="/goods">对账列表</a></el-menu-item>
+        <el-menu-item index="3"><a href="/reconcilia">对账列表</a></el-menu-item>
+        <el-menu-item id="author" index="4">
+            <img class="el-tooltip" src="image/avatar.jpg"/>
+            <el-dropdown>
+                  <span class="el-dropdown-link">{{loginName}}<i class="el-icon-arrow-down el-icon--right"></i></span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>首页</el-dropdown-item>
+                    <el-dropdown-item divided><a href="/logout">退出</a></el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+        </el-menu-item>
+    </el-menu>
+
+    <!-- main -->
+    <div id="main">
+        <el-row :gutter="20">
+            <el-col :span="20" :offset="7">
+                <el-container>
+                    <div>
+                        <h3>优雅的入门Spring Boot框架，实现简单的CRUD。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                    </div>
+                </el-container>
+            </el-col>
+        </el-row>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <el-container>
+            <el-footer>
+                <el-row :gutter="20">
+                    <el-col :span="8" :offset="10">
+                        <div class="footer-inner">
+                            <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+                                <span class="with-love">
+                                    <i class="fa fa-heartbeat"></i>
+                                </span>
+                                <span class="author" itemprop="copyrightHolder">Angevin</span>
+                            </div>
+                        </div>
+                    </el-col>
+                </el-row>
+            </el-footer>
+        </el-container>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" th:src="@{/lib/vue/vue.js}"></script>
+<script type="text/javascript" th:src="@{/lib/element-ui/lib/index.js}"></script>
+<script type="text/javascript" th:src="@{/lib/vue/vue-resource.js}"></script>
+<script type="text/javascript" th:src="@{/lib/vue/vuex.min.js}"></script>
+<script type="text/javascript" th:src="@{/store/store.js}"></script>
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
+</html>

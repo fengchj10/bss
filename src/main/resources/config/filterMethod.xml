@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<filters>
+    <filter name="global">
+            <method url="/login" />
+            <!--<method url="/login/\S+/callback"  rule="matches"/>-->
+            <!--<method url="/devices/uploadAppBehaviorLog"  rule="startWith"/>-->
+            <method url="/reconcilia/create"  rule="equals"/>
+            <method url="/reconcilia/syncData"  rule="equals"/>
+    </filter>
+    <!--<filter name="30">-->
+            <!--<method url="/\S+/logout" rule="matches"/>-->
+            <!--<method url="/loginInfo" />-->
+    <!--</filter>-->
+    <!--<filter name="21">-->
+            <!--<method url="/\S+/logout" rule="matches"/>-->
+            <!--<method url="/loginInfo" />-->
+
+    <!--</filter>-->
+    <!--<filter name="10">-->
+            <!--<method url="/sysconfig/client/mdm" type="get"/>-->
+    <!--</filter>-->
+</filters>

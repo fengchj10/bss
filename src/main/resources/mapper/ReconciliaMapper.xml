@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.angevin.mapper.ReconciliaMapper">
+
+    <resultMap id="baseMap" type="com.angevin.entity.Reconcilia">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="serial_number" property="serialNumber" jdbcType="VARCHAR" />
+        <result column="cust_id" property="custId" jdbcType="VARCHAR" />
+        <result column="cust_name" property="custName" jdbcType="VARCHAR" />
+        <result column="local_net_id" property="localNetId" jdbcType="VARCHAR" />
+        <result column="accept_date" property="acceptDate" jdbcType="TIMESTAMP" />
+        <result column="prod_id" property="prodId" jdbcType="VARCHAR" />
+        <result column="price_plan_id" property="pricePlanId" jdbcType="VARCHAR" />
+        <result column="act_type" property="actType" jdbcType="VARCHAR" />
+        <result column="eff_date" property="effDate" jdbcType="TIMESTAMP" />
+        <result column="exp_date" property="expDate" jdbcType="TIMESTAMP" />
+        <result column="institution_code" property="institutionCode" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultType="com.angevin.entity.Reconcilia">
+        SELECT * FROM t_bss_data
+    </select>
+
+    <!-- 条件查询 -->
+    <select id="findByPage" parameterType="com.angevin.entity.Reconcilia" resultMap="baseMap">
+        SELECT * FROM t_bss_data WHERE 1=1
+
+        <if test="checkDate != null">
+            AND eff_date LIKE CONCAT(#{checkDate}, '%')
+        </if>
+        <if test="otherInfo != null">
+            AND (cust_id LIKE CONCAT('%', #{otherInfo}, '%')
+            OR cust_name LIKE CONCAT('%', #{otherInfo}, '%')
+            OR prod_id LIKE CONCAT('%', #{otherInfo}, '%'))
+        </if>
+        ORDER BY serial_number
+
+    </select>
+
+    <!-- 根据id查询 -->
+    <select id="findById" parameterType="Long" resultMap="baseMap">
+        SELECT * FROM t_bss_data WHERE id = #{id}
+    </select>
+
+    <!-- 添加数据 -->
+    <insert id="create" parameterType="com.angevin.entity.Reconcilia">
+        INSERT INTO t_bss_data(id, serial_number, cust_id, cust_name,local_net_id, accept_date, prod_id, price_plan_id,act_type, eff_date, exp_date, institution_code,create_time)
+        VALUES(#{id}, #{serialNumber}, #{custId}, #{custName}, #{localNetId}, #{acceptDate}, #{prodId}, #{pricePlanId}, #{actType}, #{effDate}, #{expDate}, #{institutionCode}, #{createTime})
+    </insert>
+
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="Long">
+        DELETE FROM t_bss_data WHERE id = #{id}
+    </delete>
+
+    <select id="findByValueBean" parameterType="com.angevin.entity.Reconcilia" resultMap="baseMap">
+        SELECT * FROM t_bss_data WHERE 1=1
+
+        <if test="checkDate != null">
+            AND eff_date LIKE CONCAT(#{checkDate}, '%')
+        </if>
+        <if test="otherInfo != null">
+            AND (cust_id LIKE CONCAT('%', #{otherInfo}, '%')
+            OR cust_name LIKE CONCAT('%', #{otherInfo}, '%')
+            OR prod_id LIKE CONCAT('%', #{otherInfo}, '%'))
+        </if>
+        ORDER BY serial_number
+     </select>
+</mapper>
